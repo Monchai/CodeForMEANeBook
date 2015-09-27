@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Mini-Social</title>
+    </head>
+    <body ng-app="MiniSocial" ng-controller="RegisterController">        
+        <h1>Mini-Social</h1>
+        <h2>Register</h2>
+        <form>
+            <p>Display Name : <input type="text" ng-model="DisplayName" /></p>
+            <p>Login Name : <input type="text" ng-model="LoginName" autocomplete="false" /></p>
+            <p>
+                Password : <input type="password" ng-model="Password" /><br />
+                Confirm Password : <input type="password" ng-model="ConfirmPassword" />
+            </p>
+            <input type="submit" ng-click="register()" value="Save..." />
+        </form>
+    </body>
+</html>
+<script src="/javascripts/angular.js"></script>
+<script>
+var app = angular.module("MiniSocial", []);  
+    app.controller("RegisterController", function($scope, $http){
+        $scope.LoginName = "";      $scope.DisplayName = "";
+        $scope.Password = "";       $scope.ConfirmPassword = "";
+        //-------------------------------------------------------------------
+        $scope.register = function(){
+            if($scope.LoginName.trim().length==0){
+                alert("ใส่ LoginName ด้วย");
+                return false;    
+            }
+            if($scope.DisplayName.trim().length==0){
+                alert("ใส่ Display Name ด้วย");
+                return false;    
+            }            
+            if($scope.Password!=$scope.ConfirmPassword){
+                alert("Password และ Conform Pssword ต้องตรงกัน");
+                return false;
+            }
+            var url = "/register/save";
+            var data = {
+                loginname   : $scope.LoginName
+                , password    : $scope.Password
+                , displayname : $scope.DisplayName
+            }
+            $http.post(url, data).success(function(result){                
+                if(result.id){
+                    location.href = "/authen/login";
+                }else{
+                    alert(result.message);    
+                }
+            }).error(function(){
+                alert("Error");
+            });
+            //-------------------------------------------------------------------
+        }
+    });
+</script>

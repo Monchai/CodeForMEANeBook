@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Mini-Social</title>
+        <style>
+            #tb-header{ background-color: #c0c0c0;
+                width: 90%; margin: 10px auto;
+                padding: 10px; border-spacing: 0px;
+                border-collapse: 0px; border-radius: 10px; }
+            .tr-row {   border-radius: 10px}
+            .tr-row:nth-child(even){ background-color: #f0f0f0; }
+            .tr-row:nth-child(odd){ background-color: #c0c0c0; }
+            .tr-row > td{ padding: 10px; }
+            .button-new{ padding: 5px; background-color: #c0c0c0;
+                border-radius: 5px; margin: 10px;
+                border: none; cursor: pointer; }
+            .button-new:hover{ background-color: #c0ffc0;}
+        </style>
+    </head>
+    <body ng-app="MiniSocial">        
+        <h1>Mini-Social</h1>   
+        <a href="#/">Home</a>        
+        <a href="#/create">Create</a>
+        <a href="/profile">Profile</a>
+        <a href="/authen/login">Logout</a>
+        <div ng-view></div>
+    </body>
+<!--
+        <div ng-controller="HeadersController" ng-init="listTopic()">
+            <h2>{{title}}</h2>
+            <button class="button-new" ng-click="listTopic()">Load Topic</button>
+            <table id="tb-header">
+                <tr class="tr-row" ng-repeat="t in Topics">
+                    <td>{{$index+1}}</td>
+                    <td>{{t.title}}</td>
+                </tr>
+            </table>
+        </div>
+-->
+    
+</html>
+<script src="/javascripts/angular.js"></script>
+<script src="/javascripts/angular-route.js"></script>
+
+<script src="/javascripts/app/minisocial-app.js"></script>
+<script src="/javascripts/app/controller-webboard.js"></script>
+<script src="/javascripts/app/controller-webboard-topic.js"></script>
+<script src="/javascripts/app/controller-webboard-create.js"></script>
+
+<script src="/socket.io/socket.io.js"></script>
+<!--
+<script>
+
+    var socket = io.connect(); 
+    socket.on("update-trigger", function(data){
+        alert(data);
+    });
+
+</script>
+-->
+
+

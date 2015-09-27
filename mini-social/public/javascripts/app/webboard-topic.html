@@ -1,0 +1,25 @@
+<div ng-init="loadHeader()">
+    <h1>{{Topic.title}}</h1>
+    <p ng-bind-html="bindHTML(Topic.content)"></p>
+    <p style="text-align:right; font-weight: bold;">
+        Post by : {{Topic.display}} |
+        Reply : {{Topic.reply}} |
+        View : {{Topic.view}}                               
+    </p>
+    <hr />
+    <div>
+        <div ng-repeat="r in Reply">
+            <p ng-bind-html="bindHTML(r.content)"></p>
+            <hr />            
+            <p style="text-align:right; font-weight: bold;">
+                Reply by : {{r.display}}
+            </p>
+        </div>
+    </div>
+    <form>
+        <textarea ng-model="ReplyContent"></textarea>
+        <br />
+        <input type="button" value="Save" ng-click="saveReply()" />
+    </form>
+</div>
+

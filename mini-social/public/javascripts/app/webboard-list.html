@@ -1,0 +1,14 @@
+<h1>Webboard List</h1>
+
+<div ng-init="listTopic()">
+    <button class="button-new" ng-click="listTopic()">Load Topic</button>
+    <table id="tb-header">
+        <tr class="tr-row" ng-repeat="t in Topics">
+            <td>{{$index+1}}</td>
+            <td><a href="#/topic/{{t.id}}">{{t.title}}</a></td>
+            <td>Reply : {{t.reply}} | View : {{t.view}}</td>                    
+            <td>{{t.display}}</td>                                                      
+        </tr>
+    </table>
+</div>
+
