@@ -196,13 +196,32 @@ module.exports = new function(){
                     var result = {
                         id : rows[0].id,
                         loginname : rows[0].loginname,
-                        displayname : rows[0].displayname
+                        displayname : rows[0].displayname,
+                        avatar : rows[0].avatar
                     }
                     callbackOK(result);
                 }
             });
     }
     
+    this.updateProfile = function(id, displayname, 
+                                   loginname, password, 
+                                   avatarname, callback){
+        var sql =   "update member";
+        sql+=       " set loginname = '"+loginname+"'";
+        sql+=       " , displayname = '"+displayname+"'";
+        sql+=       " , avatar = '"+avatarname+"'"        
+        if(password.length>0){
+            sql+=   " , password = '"+password+"'";
+        }        
+        sql+=       " where id = "+id;
+        
+        db.query(sql, function(err, rows, fields){
+            callback();
+        });
+        
+    }   
+
     this.loadTopicHistory = function(id, callbackOK, callbackError){
         var sql =   "select distinct(h.id), h.title, h.reply_count";
         sql+=       ", h.view_count, m.displayname as display";

@@ -25,7 +25,7 @@ module.exports = new function(){
     //--------------------------------------------------
     this.isLogin = function(req){
         var token = this.readToken(req);
-        console.log(token);
+//        console.log(token);
         if(token.id>0){
             return true;    
         }else{

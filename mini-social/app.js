@@ -71,6 +71,10 @@ webboard.init();
 
 permission = require("./library/permission");
 
+path_public = path.join(__dirname, 'public/');
+path_temp = path.join(__dirname, 'temp/');
+
+
 //io = require("socket.io").listen(server);
 
 //app.on("close", function(){
